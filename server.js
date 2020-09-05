@@ -3,6 +3,7 @@ let app = express();
 let routes = require('./routes')
 let cors = require('cors')
 
+
 app.use(cors())
 
 app.get('/', (req, res) => routes.home(req,res))
