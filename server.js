@@ -10,11 +10,11 @@ let apiRoutes = require('./routes/api')
 let routes = require('./routes/index')
 
 let {
-    MONGODB_PASSWORD,
+    MONGODB_URI,
     PORT
 } = process.env;
 
-mongoose.connect(`mongodb+srv://spotifierv2admin:${MONGODB_PASSWORD}@spotifierv2.sw8xx.mongodb.net/users?retryWrites=true&w=majority`, {
+mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
