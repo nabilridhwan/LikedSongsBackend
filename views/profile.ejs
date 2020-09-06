@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='<%=ngApp%>'>
+    <%- include('partials/head') %>
+<body ng-controller="<%=ngController%>" ng-init='slug="<%=slug%>";'>
+    <%- include('partials/nav') %>
+
+    <ul>
+        <li ng-repeat="profile in profiles | filter: '<%=slug%>'">
+            <p>{{profile.name}}</p>
+        </li>
+    </ul>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

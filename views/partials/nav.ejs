@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/"><%=appName%></a>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+                <!-- TODO: Make latest page -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Profiles</a>
+                </li>
+            </ul>
+
+            <% if(slug){ %>
+            <form class="form-inline my-2 my-lg-0">
+                <a class="btn btn-outline-success my-2 my-sm-0" href="/profile" role="button">My Profile</a>
+            </form>
+
+            <form class="form-inline my-2 my-lg-0">
+                <a class="btn btn-outline-danger my-2 my-sm-0" href="/api/logout" role="button">Log Out</a>
+            </form>
+            <%  }else{%>
+            <form class="form-inline my-2 my-lg-0">
+                <a class="btn btn-success my-2 my-sm-0" href="{{redirectLink}}" role="button">Log In / Sign
+                    Up</a>
+            </form>
+            <% } %>
+        </div>
+    </div>
+</nav>
