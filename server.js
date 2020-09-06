@@ -32,8 +32,13 @@ app.use(session({
 }))
 app.use((req, res, next) => {
     res.locals.ngApp = "mainApp"
-    res.locals.appName = "Spoti"
+    res.locals.appName = "Discoverify"
     res.locals.slug = req.session.slug
+    if(req.session.profile_picture_src){
+        res.locals.profile_picture_src = req.session.profile_picture_src
+    }else{
+        res.locals.profile_picture_src = "http://placehold.it/32x32";
+    }
     next();
 })
 app.use(express.static(__dirname + "/static"))

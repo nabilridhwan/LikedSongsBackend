@@ -1,0 +1,10 @@
+.jumbotron{
+    background-color: #1DB954;
+    color: whitesmoke;
+}
+
+#loginSpotifyButton{
+    background-color: whitesmoke;
+    color: #1DB954;
+    border: none;
+}

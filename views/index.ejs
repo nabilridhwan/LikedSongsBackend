@@ -2,21 +2,32 @@
 <html lang="en" ng-app='<%=ngApp%>'>
 <%- include('partials/head') %>
 
-<body ng-controller="<%=ngController%>">
+<body ng-controller="<%=ngController%>" class="text-center">
 
     <%- include('partials/nav') %>
 
     <div class="jumbotron">
         <div class="container">
-            <h1 class="display-4"><%=appName%></h1>
-            <p class="lead">Better way to discovery music!</p>
-            <hr class="my-4">
-            <a class="btn btn-primary btn-lg" href="{{redirectLink}}" role="button">Sign Up / Log In</a>
+            <h1 class="display-3"><%=appName%></h1>
+            <p class="lead">Better way to discover new music!</p>
+            <% if(!slug){ %>
+                <a class="btn btn-primary btn-lg" href="{{redirectLink}}" id="loginSpotifyButton">
+                    <i class="fab fa-spotify"></i>
+                    Log in with Spotify
+                </a>
+            <% }else{ %>
+                <a class="btn btn-primary btn-lg" href="#" id="loginSpotifyButton">
+                    <i class="fas fa-music"></i>
+                    I'm Feeling Lucky
+                </a>
+            <% } %>
         </div>
     </div>
 
     <div class="container">
-        <h1 class="display-4">Discover new music!</h1>
+        <h1 class="display-4">
+            With <%=appName%>, You can discover new music!
+        </h1>
         <p><%=appName%> is designed for music enthusiast! Sign up / Log In to add your Spotify's liked songs to the list of profiles! Head over to the Profiles section and discover other people's music taste! With <%=appName%>, You can share your liked songs with your friends too by clicking 'My Profile' button on the top right and sharing the link in the address bar to your friends!</p>
     </div>
 

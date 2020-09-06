@@ -5,30 +5,40 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                
+                <li class="nav-item">
                     <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
 
                 <!-- TODO: Make latest page -->
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Profiles</a>
+                    <a class="nav-link" href="/">Discover</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Search</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Privacy Policy</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Help</a>
                 </li>
             </ul>
-
             <% if(slug){ %>
-            <form class="form-inline my-2 my-lg-0">
-                <a class="btn btn-outline-success my-2 my-sm-0" href="/profile" role="button">My Profile</a>
-            </form>
+            <div class="my-2 my-lg-0">
+                <a href="{{redirectUrl}}">
+                    <img src="<%=profile_picture_src%>" id="profilePicture" class="profile-image img-circle" width="32">
+                </a>
 
-            <form class="form-inline my-2 my-lg-0">
-                <a class="btn btn-outline-danger my-2 my-sm-0" href="/api/logout" role="button">Log Out</a>
-            </form>
-            <%  }else{%>
-            <form class="form-inline my-2 my-lg-0">
-                <a class="btn btn-success my-2 my-sm-0" href="{{redirectLink}}" role="button">Log In / Sign
-                    Up</a>
-            </form>
+                <a class="btn btn-danger btn-sm btn-lg" href="/api/logout">
+                    Log Out
+                </a>
+            </div>
             <% } %>
+
         </div>
     </div>
 </nav>

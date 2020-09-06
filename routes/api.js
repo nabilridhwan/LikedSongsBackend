@@ -1,5 +1,4 @@
 let apiHelper = require('../helpers/api')
-let request = require('request')
 let fetch = require('node-fetch')
 let schemas = require('../db/schema')
 const {
@@ -160,9 +159,8 @@ exports.updateUser = (req, res) => {
                             }).save()
                         }
                     })
-
                     req.session.slug = id;
-
+                    req.session.profile_picture_src = images[0].url;
                     // Redirect to profile page
                     res.redirect(`/profile?slug=${id}`)
                 })
