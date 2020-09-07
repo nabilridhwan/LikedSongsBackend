@@ -10,3 +10,12 @@ mainApp.controller('ProfileController', ($scope, $http) => {
         $scope.profiles = res.data.data;
     })
 })
+
+mainApp.controller('SearchController', ($scope, $http) => {
+    $http.get(`/api/getProfiles`).then((res) => {
+        $scope.profiles = res.data.data;
+
+        $scope.allLikedSongs = $scope.profiles.map(profile => profile.liked_songs)[0]
+        console.log($scope)
+    })
+})

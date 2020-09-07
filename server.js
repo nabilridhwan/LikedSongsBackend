@@ -43,8 +43,14 @@ app.use((req, res, next) => {
 })
 app.use(express.static(__dirname + "/static"))
 
-app.get('/', (req, res) => routes.home(req, res))
-app.get('/profile', (req, res) => routes.profile(req, res))
+app.get("/", (req,res) => routes.home(req, res))
+app.get('/:indexroute', (req, res) => {
+    if(req.params.indexroute){
+        routes[req.params.indexroute](req, res)
+    }else{
+        routes.home(req, res)
+    }
+})
 app.get("/api/:apiroute", (req, res) => apiRoutes[req.params.apiroute](req, res))
 
 app.listen(PORT, () => {
