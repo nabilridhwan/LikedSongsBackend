@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='<%=ngApp%>'>
+<%- include('partials/head') %>
+
+<body ng-controller="<%=ngController%>" class="text-center">
+    <%- include('partials/nav') %>
+    <div class="jumbotron" id="mainJumbotron">
+        <div class="container">
+            <h1 class="display-3">Something's not adding up!</h1>
+            <p>We couldn't find what you're looking for! Perhaps you could Discover more songs!</p>
+
+            <a class="btn btn-primary btn-lg" href="/discover" id="loginSpotifyButton">
+                <i class="fas fa-music"></i>
+                Discover More Songs!
+            </a>
+        </div>
+    </div>
+    <%- include('partials/footer') %>
+</body>
+
+</html>

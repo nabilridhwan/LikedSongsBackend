@@ -27,3 +27,10 @@ exports.search = (req, res) => {
         ngController: "SearchController",
     })
 }
+
+exports.notFound = (req, res) => {
+    res.render('404', {
+        title: `${res.locals.appName} | Not Found`,
+        ngController: "NotFoundController",
+    })
+}

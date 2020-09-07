@@ -44,14 +44,9 @@ app.use((req, res, next) => {
 app.use(express.static(__dirname + "/static"))
 
 app.get("/", (req,res) => routes.home(req, res))
-app.get('/:indexroute', (req, res) => {
-    if(req.params.indexroute){
-        routes[req.params.indexroute](req, res)
-    }else{
-        routes.home(req, res)
-    }
-})
+app.get('/search', (req, res) => routes.search(req,res))
 app.get("/api/:apiroute", (req, res) => apiRoutes[req.params.apiroute](req, res))
+app.get("*", (req,res) => routes.notFound(req,res))
 
 app.listen(PORT, () => {
     console.log(`Running on port ${PORT}`)
