@@ -19,6 +19,7 @@ mainApp.controller('SearchController', ($scope, $http) => {
         image: image of album or profile picture
         name: <track_name|display_name>
         type: <song|user>
+        button_url: <user_link|song_link>
     */
     $http.get(`/api/getProfiles`).then((res) => {
         $scope.profiles = res.data.data;
@@ -28,15 +29,19 @@ mainApp.controller('SearchController', ($scope, $http) => {
                 image: song.track.album.images[0].url,
                 type: "Track",
                 name: song.track.name,
-                tagline: song.track.artists[0].name
+                tagline: song.track.artists[0].name,
+                button_url: song.track.external_urls.spotify
             }
         })
+
+        // TODO: Update with button url of user profile
         $scope.allProfilesFormatted = $scope.profiles.map(profile => {
             return {
                 image: profile.image,
                 type: "User",
                 name: profile.name,
-                tagline: profile.spotifyCountry
+                tagline: profile.spotifyCountry,
+                button_url: "#"
             }
         })
         $scope.searchData = $scope.allLikedSongsFormatted.concat($scope.allProfilesFormatted)
