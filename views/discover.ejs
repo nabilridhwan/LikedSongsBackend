@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='<%=ngApp%>'>
+<%- include('partials/head') %>
+
+<body ng-controller="<%=ngController%>">
+
+    <%- include('partials/nav') %>
+
+    <h1>{{}}</h1>
+
+    <div class="jumbotron" id="mainJumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-9">
+                    <h1 class="display-3">Feeling Lucky?</h1>
+                    <p class="lead">Try this!</p>
+                </div>
+
+                <div class="col-3">
+                    <div class="card" style="width: 15rem;">
+                        <img src="{{randomSong.image}}" class="card-img-top">
+                        <div class="card-body">
+        
+                            <p class="card-text"><span class="text-muted">{{randomSong.type}}</span></p>
+        
+                            <h5 class="card-title">{{randomSong.name}}</h5>
+        
+                            <p class="card-text"><span class="text-muted" style="text-transform: capitalize;">{{randomSong.tagline}}</span></p>
+        
+                            <a href="{{randomSong.button_url}}" class="btn btn-primary" id="goToSpotifyButton">
+                                <i class="fab fa-spotify"></i>
+                                Open in Spotify
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('partials/footer') %>
+</body>
+
+</html>
