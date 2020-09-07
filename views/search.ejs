@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='<%=ngApp%>'>
+<%- include('partials/head') %>
+
+<body ng-controller="<%=ngController%>" ng-init='slug="<%=slug%>";'>
+    <%- include('partials/nav') %>
+
+    <div class="jumbotron" id="mainJumbotron">
+        <div class="container">
+            <h1 class="display-3">Search</h1>
+
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Search for songs and artists!</label>
+                    <input type="text" class="form-control" ng-model="$ctrl.query" placeholder="Search..." />
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row row-cols-4">
+            <div class="card" style="width: 15rem;" ng-repeat="song in allLikedSongs | filter: $ctrl.query">
+                <img src="{{song.track.album.images[0].url}}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{song.track.name}}</h5>
+                    <p class="card-text"><span class="text-muted">{{song.track.artists[0].name}}</span></p>
+
+                    <a href="{{song.track.external_urls.spotify}}" class="btn btn-primary" id="goToSpotifyButton">
+                        <i class="fab fa-spotify"></i>
+                        Open in Spotify
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <%- include('partials/footer') %>
+</body>
+
+</html>

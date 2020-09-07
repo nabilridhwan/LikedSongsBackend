@@ -21,3 +21,10 @@ exports.me = (req, res) => {
         ngController: "ProfileController",
     })
 }
+
+exports.search = (req, res) => {
+    res.render('search', {
+        title: `${res.locals.appName} | Search`,
+        ngController: "SearchController",
+    })
+}

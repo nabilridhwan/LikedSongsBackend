@@ -142,7 +142,7 @@ exports.updateUser = (req, res) => {
                                 refresh_token: refresh_token,
                                 access_token: access_token,
                                 liked_songs: json.items
-                            })
+                            }).then(docs => console.log("Updated!"))
                         } else {
                             // If does not exist: Sign them up (save)
                             console.log("New User - Saving New Data")
@@ -158,11 +158,12 @@ exports.updateUser = (req, res) => {
                                 liked_songs: json.items
                             }).save()
                         }
+
+                        req.session.slug = id;
+                        req.session.profile_picture_src = images[0].url;
+                        // Redirect to profile page
+                        res.redirect(`/search`)
                     })
-                    req.session.slug = id;
-                    req.session.profile_picture_src = images[0].url;
-                    // Redirect to profile page
-                    res.redirect(`/profile?slug=${id}`)
                 })
         })
 }
