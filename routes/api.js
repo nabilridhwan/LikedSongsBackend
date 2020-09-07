@@ -62,7 +62,6 @@ exports.getAccessTokenFromRefreshToken = (req, res) => {
     } = req.query;
     // TODO: Error handling if no refresh token
 
-
     let base64 = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64');
     let properReqBody = `grant_type=refresh_token&refresh_token=${refresh_token}`
 
@@ -105,15 +104,11 @@ exports.updateUser = (req, res) => {
                 display_name,
                 id,
                 product,
-                images
+                images,
+                external_urls
             } = json;
-            // name: String,
-            // slug: String,
-            // image: String,
-            // spotifyCountry: String,
-            // refresh_token: String,
-            // access_token: String,
-            // liked_songs: Array
+            
+            console.log(json)
 
             // Get list of liked songs
             fetch("https://api.spotify.com/v1/me/tracks?limit=50", {
@@ -128,35 +123,30 @@ exports.updateUser = (req, res) => {
                     schemas.User.find({
                         slug: id
                     }, (err, docs) => {
+
+                        let endSaveObject = {
+                            name: display_name,
+                            slug: id,
+                            image: images[0].url,
+                            last_updated: new Date().toISOString(),
+                            spotifyCountry: country,
+                            refresh_token: refresh_token,
+                            access_token: access_token,
+                            liked_songs: json.items,
+                            product: product,
+                            href: external_urls.spotify
+                        }
+
                         // If exists: Update user profile
                         if (docs.length) {
                             console.log("User Found - Updating User's Data")
                             schemas.User.findOneAndUpdate({
                                 slug: id
-                            }, {
-                                name: display_name,
-                                slug: id,
-                                image: images[0].url,
-                                last_updated: new Date().toISOString(),
-                                spotifyCountry: country,
-                                refresh_token: refresh_token,
-                                access_token: access_token,
-                                liked_songs: json.items
-                            }).then(docs => console.log("Updated!"))
+                            }, endSaveObject).then(docs => console.log("Updated!"))
                         } else {
                             // If does not exist: Sign them up (save)
                             console.log("New User - Saving New Data")
-
-                            schemas.User({
-                                name: display_name,
-                                slug: id,
-                                image: images[0].url,
-                                last_updated: new Date().toISOString(),
-                                spotifyCountry: country,
-                                refresh_token: refresh_token,
-                                access_token: access_token,
-                                liked_songs: json.items
-                            }).save()
+                            schemas.User(endSaveObject).save()
                         }
 
                         req.session.slug = id;

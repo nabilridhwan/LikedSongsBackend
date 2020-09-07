@@ -34,14 +34,14 @@ mainApp.controller('SearchController', ($scope, $http) => {
             }
         })
 
-        // TODO: Update with button url of user profile
+        // Update with button url of user profile
         $scope.allProfilesFormatted = $scope.profiles.map(profile => {
             return {
                 image: profile.image,
                 type: "User",
                 name: profile.name,
-                tagline: profile.spotifyCountry,
-                button_url: "#"
+                tagline: `Spotify ${profile.product}`,
+                button_url: profile.href
             }
         })
         $scope.searchData = $scope.allLikedSongsFormatted.concat($scope.allProfilesFormatted)
