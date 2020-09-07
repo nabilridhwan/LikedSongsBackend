@@ -34,3 +34,10 @@ exports.notFound = (req, res) => {
         ngController: "NotFoundController",
     })
 }
+
+exports.discover = (req, res) => {
+    res.render('discover', {
+        title: `${res.locals.appName} | Discover`,
+        ngController: "DiscoverController",
+    })
+}

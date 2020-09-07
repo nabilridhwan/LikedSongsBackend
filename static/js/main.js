@@ -47,3 +47,23 @@ mainApp.controller('SearchController', ($scope, $http) => {
         $scope.searchData = $scope.allLikedSongsFormatted.concat($scope.allProfilesFormatted)
     })
 })
+
+mainApp.controller('DiscoverController', ($scope, $http) => {
+    $http.get(`/api/getProfiles`).then((res) => {
+        $scope.profiles = res.data.data;
+        $scope.allLikedSongs = $scope.profiles.map(profile => profile.liked_songs)[0]
+        $scope.allLikedSongsFormatted = $scope.allLikedSongs.map(song => {
+            return{
+                image: song.track.album.images[0].url,
+                type: "Track",
+                name: song.track.name,
+                tagline: song.track.artists[0].name,
+                button_url: song.track.external_urls.spotify,
+                id: song.track.id
+            }
+        })
+
+        $scope.randomSongIndex = Math.floor(Math.random() * $scope.allLikedSongsFormatted.length)
+        $scope.randomSong = $scope.allLikedSongsFormatted[$scope.randomSongIndex]
+    })
+})
