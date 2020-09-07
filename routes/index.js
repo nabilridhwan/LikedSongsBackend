@@ -15,7 +15,6 @@ exports.profile = (req, res) => {
 }
 
 exports.me = (req, res) => {
-    // TODO: Get slug from session.
     res.render('profile', {
         title: `${res.locals.appName} | Me`,
         ngController: "ProfileController",
