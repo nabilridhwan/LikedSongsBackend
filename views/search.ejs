@@ -11,7 +11,7 @@
 
             <form>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Search for songs and artists!</label>
+                    <label for="exampleInputEmail1">Search for songs, artists and users!</label>
                     <input type="text" class="form-control" ng-model="$ctrl.query" placeholder="Search..." />
                 </div>
             </form>
@@ -22,13 +22,18 @@
 
     <div class="container">
         <div class="row row-cols-4">
-            <div class="card" style="width: 15rem;" ng-repeat="song in allLikedSongs | filter: $ctrl.query">
-                <img src="{{song.track.album.images[0].url}}" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">{{song.track.name}}</h5>
-                    <p class="card-text"><span class="text-muted">{{song.track.artists[0].name}}</span></p>
+            <div class="card" style="width: 15rem;" ng-repeat="data in searchData | filter: $ctrl.query">
 
-                    <a href="{{song.track.external_urls.spotify}}" class="btn btn-primary" id="goToSpotifyButton">
+                <img src="{{data.image}}" class="card-img-top">
+                <div class="card-body">
+
+                    <p class="card-text"><span class="text-muted">{{data.type}}</span></p>
+
+                    <h5 class="card-title">{{data.name}}</h5>
+
+                    <p class="card-text"><span class="text-muted">{{data.tagline}}</span></p>
+
+                    <a href="#" class="btn btn-primary" id="goToSpotifyButton">
                         <i class="fab fa-spotify"></i>
                         Open in Spotify
                     </a>
