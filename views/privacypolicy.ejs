@@ -3,17 +3,38 @@
 <%- include('partials/head') %>
 
 <body ng-controller="<%=ngController%>">
-
     <%- include('partials/nav') %>
 
     <!-- TODO: Complete privacypolicy page! -->
-    <div class="jumbotron">
+    <div class="jumbotron" id="mainJumbotron">
         <div class="container">
-            <h1 class="display-4"><%=appName%></h1>
-            <p class="lead">Better way to discovery music!</p>
-            <hr class="my-4">
-            <a class="btn btn-primary btn-lg" href="#" role="button">Sign Up / Log In</a>
+            <h1 class="display-4">Privacy Policy</h1>
+            <p class="lead">Because your privacy matters to us</p>
         </div>
+    </div>
+
+    <div class="container">
+        <h1>The data we collect</h1>
+        <%=appName%> collects and stores your data in a cloud database. We collect and store are:
+        <ul>
+            <li>Your Spotify Username</li>
+            <li>Your Spotify Profile ID</li>
+            <li>Your Spotify Membership (Free/Premium)</li>
+            <li>Your Spotify Country</li>
+            <li>Your Spotify Library (Liked /Saved Songs)</li>
+        </ul>
+
+        <p>Everytime you press the 'Log in with Spotify' button, the data above is collected again and updated on the
+            database.</p>
+
+        <h1>How we use your data</h1>
+        <p>We use your data only for the purpose of running the app. We aim to collect as little data as possible. We
+            will
+            never sell or give access to your data to any third-party companies. If there are any data breeches, we will
+            notify the affected users by any reasonable means.</p>
+
+            <h1>Data that is made publicly available</h1>
+            <p>The only data we collect that is made publicly available is your Spotify Profile ID. The Spotify Profile ID is an alphanumeric identifier for your Spotify account.</p>
     </div>
 
     <%- include('partials/footer') %>

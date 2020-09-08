@@ -62,7 +62,6 @@ mainApp.controller('DiscoverController', ($scope, $http) => {
                 id: song.track.id
             }
         })
-
         $scope.randomSongIndex = Math.floor(Math.random() * $scope.allLikedSongsFormatted.length)
         $scope.randomSong = $scope.allLikedSongsFormatted[$scope.randomSongIndex]
     })

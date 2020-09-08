@@ -2,7 +2,7 @@
 <html lang="en" ng-app='<%=ngApp%>'>
 <%- include('partials/head') %>
 
-<body ng-controller="<%=ngController%>" class="text-center">
+<body ng-controller="<%=ngController%>">
 
     <%- include('partials/nav') %>
 
@@ -25,10 +25,19 @@
     </div>
 
     <div class="container">
-        <h1 class="display-4">
+        <h1>
             With <%=appName%>, You can discover new music!
         </h1>
-        <p><%=appName%> is designed for music enthusiast! Sign up / Log In to add your Spotify's liked songs to the list of profiles! Head over to the Profiles section and discover other people's music taste! With <%=appName%>, You can share your liked songs with your friends too by clicking 'My Profile' button on the top right and sharing the link in the address bar to your friends!</p>
+        <p><%=appName%> is designed for music explorers! Log in with Spotify to add your Spotify's liked songs to the list of profiles! Head over to the Discover section and discover other people's music taste!</p>
+
+        <h1>
+            You can also share!
+        </h1>
+        <p>*
+            With <%=appName%>, You can share your liked songs with your friends too by clicking 'My Profile' button on the top right and sharing the link in the address bar to your friends!
+        </p>
+
+        <p class="lead">* The intended feature is not yet complete and will be introduced in further updates.</p>
     </div>
 
     <%- include('partials/footer') %>

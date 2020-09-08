@@ -163,8 +163,6 @@ exports.getProfiles = (req, res) => {
         slug
     } = req.query;
 
-    console.log(req.query)
-
     if (!slug) {
         console.log("Finding all")
         schemas.User.find({}, (err, users) => {
