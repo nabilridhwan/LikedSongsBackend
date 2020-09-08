@@ -15,7 +15,7 @@ let {
     SESSION_SECRET
 } = process.env;
 
-let connection = mongoose.createConnection(MONGODB_URI, {
+let connection = mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
@@ -33,10 +33,6 @@ app.use(session({
     cookie: {
         maxAge: 3600000, // 1 Hour,
     },
-    store: new MongoStore({
-        mongooseConnection: connection,
-        collection: 'sessions'
-    })
 }))
 app.use((req, res, next) => {
     res.locals.ngApp = "mainApp"
