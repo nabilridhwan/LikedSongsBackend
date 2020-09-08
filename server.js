@@ -48,6 +48,9 @@ app.get("/", (req, res) => routes.home(req, res))
 app.get('/search', (req, res) => routes.search(req, res))
 app.get('/discover', (req, res) => routes.discover(req, res))
 app.get('/privacypolicy', (req, res) => routes.privacypolicy(req, res))
+app.get("/api", (req, res) => {
+    apiRoutes.returnAllMethods(req, res);
+})
 app.get("/api/:apiroute", (req, res) => apiRoutes[req.params.apiroute](req, res))
 app.get("*", (req, res) => routes.notFound(req, res))
 

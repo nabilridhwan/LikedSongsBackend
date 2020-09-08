@@ -81,11 +81,11 @@ exports.getAccessTokenFromRefreshToken = (req, res) => {
             let {
                 access_token
             } = json;
-            res.redirect(`/api/updateUser?access_token=${access_token}&refresh_token${refresh_token}`)
+            res.redirect(`/api/updateprofile?access_token=${access_token}&refresh_token${refresh_token}`)
         })
 }
 
-exports.updateUser = (req, res) => {
+exports.updateprofile = (req, res) => {
     let {
         access_token,
         refresh_token
@@ -107,7 +107,7 @@ exports.updateUser = (req, res) => {
                 images,
                 external_urls
             } = json;
-            
+
             console.log(json)
 
             // Get list of liked songs
@@ -132,7 +132,6 @@ exports.updateUser = (req, res) => {
                             spotifyCountry: country,
                             refresh_token: refresh_token,
                             access_token: access_token,
-                            liked_songs: json.items,
                             product: product,
                             href: external_urls.spotify
                         }
@@ -142,11 +141,21 @@ exports.updateUser = (req, res) => {
                             console.log("User Found - Updating User's Data")
                             schemas.User.findOneAndUpdate({
                                 slug: id
-                            }, endSaveObject).then(docs => console.log("Updated!"))
+                            }, endSaveObject).then(docs => {
+                                schemas.LikedSongs.findOneAndUpdate({
+                                    _id: id
+                                }, {
+                                    songs: json.items
+                                })
+                            })
                         } else {
                             // If does not exist: Sign them up (save)
                             console.log("New User - Saving New Data")
                             schemas.User(endSaveObject).save()
+                            schemas.LikedSongs({
+                                _id: id,
+                                songs: json.items
+                            }).save()
                         }
 
                         req.session.slug = id;
@@ -158,13 +167,13 @@ exports.updateUser = (req, res) => {
         })
 }
 
-exports.getProfiles = (req, res) => {
+exports.profiles = (req, res) => {
     let {
-        slug
+        id: slug
     } = req.query;
 
     if (!slug) {
-        console.log("Finding all")
+        console.log("Finding all profiles")
         schemas.User.find({}, (err, users) => {
             if (err) {
                 apiHelper.readResponse(req, res, true, err)
@@ -173,7 +182,7 @@ exports.getProfiles = (req, res) => {
             apiHelper.readResponse(req, res, null, users)
         })
     } else {
-        console.log(`Finding ${slug}`)
+        console.log(`Finding id ${slug} from profiles`)
         schemas.User.findOne({
             slug: slug
         }, (err, users) => {
@@ -185,7 +194,43 @@ exports.getProfiles = (req, res) => {
     }
 }
 
+exports.songs = (req, res) => {
+    let {
+        id
+    } = req.query;
+    if (!id) {
+        console.log(`Finding all liked songs`)
+        // Find all
+        schemas.LikedSongs.find({}, (err, users) => {
+            if (err) {
+                apiHelper.readResponse(req, res, true, err)
+            }
+
+            apiHelper.readResponse(req, res, null, users)
+        })
+    } else {
+        console.log(`Finding liked songs from user ${id}`)
+        schemas.LikedSongs.findOne({
+            _id: id
+        }, (err, users) => {
+            if (err) {
+                apiHelper.readResponse(req, res, true, err)
+            }
+
+            apiHelper.readResponse(req, res, null, users)
+        })
+    }
+}
+
 exports.logout = (req, res) => {
     req.session.destroy();
     res.redirect("/")
+}
+
+exports.session = (req, res) => {
+    apiHelper.readResponse(req, res, null, req.session)
+}
+
+exports.returnAllMethods = (req, res) => {
+    apiHelper.readResponse(req, res, null, Object.keys(exports))
 }

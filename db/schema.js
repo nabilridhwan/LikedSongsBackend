@@ -9,7 +9,11 @@ exports.User = mongoose.model('user', new Schema({
     spotifyCountry: String,
     refresh_token: String,
     access_token: String,
-    liked_songs: Array,
     product: String,
     href: String
+}))
+
+exports.LikedSongs = mongoose.model('liked_songs', new Schema({
+    _id: String, // User's slug
+    songs: Array // Users' liked songs list
 }))
