@@ -43,6 +43,7 @@ app.use((req, res, next) => {
     res.locals.appName = "Discoverify"
     res.locals.slug = req.session.slug
     res.locals.profile_picture_src = req.session.profile_picture_src ? req.session.profile_picture_src : "http://placehold.it/32x32"
+    console.log(`${req.ip} ${req.statusCode} - ${req.method} ${req.path}`)
     next();
 })
 app.use(express.static(__dirname + "/static"))
@@ -50,6 +51,7 @@ app.use(express.static(__dirname + "/static"))
 app.get("/", (req, res) => routes.home(req, res))
 app.get('/search', (req, res) => routes.search(req, res))
 app.get('/discover', (req, res) => routes.discover(req, res))
+app.get('/privacypolicy', (req, res) => routes.privacypolicy(req, res))
 app.get("/api/:apiroute", (req, res) => apiRoutes[req.params.apiroute](req, res))
 app.get("*", (req, res) => routes.notFound(req, res))
 

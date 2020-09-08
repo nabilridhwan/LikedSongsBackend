@@ -13,12 +13,12 @@
             <div class="row">
                 <div class="col-9">
                     <h1 class="display-3">Feeling Lucky?</h1>
-                    <p class="lead">Try this!</p>
+                    <p class="lead">You can give {{randomSong.name}} a listen!</p>
                 </div>
 
                 <div class="col-3">
                     <div class="card" style="width: 15rem;">
-                        <img src="{{randomSong.image}}" class="card-img-top">
+                        <img ng-src="{{randomSong.image}}" class="card-img-top">
                         <div class="card-body">
         
                             <p class="card-text"><span class="text-muted">{{randomSong.type}}</span></p>

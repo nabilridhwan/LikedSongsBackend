@@ -41,3 +41,10 @@ exports.discover = (req, res) => {
         ngController: "DiscoverController",
     })
 }
+
+exports.privacypolicy = (req, res) => {
+    res.render('privacypolicy', {
+        title: `${res.locals.appName} | Privacy Policy`,
+        ngController: null,
+    })
+}
