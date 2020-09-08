@@ -59,7 +59,7 @@ mainApp.controller('DiscoverController', ($scope, $http) => {
                 name: song.track.name,
                 tagline: song.track.artists[0].name,
                 button_url: song.track.external_urls.spotify,
-                id: song.track.id
+                id: song.track.id,
             }
         })
         $scope.randomSongIndex = Math.floor(Math.random() * $scope.allLikedSongsFormatted.length)
